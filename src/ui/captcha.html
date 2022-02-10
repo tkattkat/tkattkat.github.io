@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Electra Captcha Solver</title>
+</head>
+<body>
+    <div id="g-recaptcha" class="g-recaptcha"></div>
+    <script>
+        Object.defineProperty(document, "hidden", {
+            value: false
+        });
+        window.$ = window.jQuery = require('jquery');
+        const { ipcRenderer } = require('electron');
+        class CaptchaQueue extends Array {
+            constructor() {
+                super();
+                this.worker = setInterval(async () => {
+                    if(this.length > 0) {
+                        if(Date.now() - this[0].requestedAt > 1000 * 60 * 2 - 10000) {
+                            // expired
+                            console.log('job expired', await this.dequeue());
+                        } else {
+                            if(!currentJob) {
+                                await setNewJob();
+                                window.grecaptcha.execute();
+                            };
+                        };
+                    };
+                }, 1000);
+            };
+            get length() {
+                return this.length;
+            };
+            enqueue(j) {
+                // push the captcha job to the queue, then we dequeue everytime we need a captcha
+                return new Promise(resolve => { resolve(this.push({...j})) });  
+            };
+            dequeue() {
+                return new Promise(resolve => { resolve(this.shift()) });
+            };
+            purge() {
+                return new Promise( async (resolve) => {
+                    while(this.length > 0) {
+                        await this.dequeue();
+                    };
+                    resolve();
+                });
+            };
+        };
+        let currentJob;
+        const captchaQueue = new CaptchaQueue();
+        function submitToken() {
+            ipcRenderer.send('captcha-response', {
+                ...currentJob,
+                token: window.grecaptcha.getResponse(),
+                createdAt: Date.now()
+            });
+            // reset captcha
+            window.grecaptcha.reset();
+            // reset current job
+            currentJob = null;
+        };
+        function errorHandler() {
+            window.grecaptcha.reset();
+            window.grecaptcha.execute();
+        };
+        async function setNewJob() {
+            currentJob = await captchaQueue.dequeue();
+            if(!!currentJob) {
+                window.$('#g-recaptcha').replaceWith('<div id="g-recaptcha" class="g-recaptcha"></div>');
+                window.grecaptcha.render('g-recaptcha', {
+                    'sitekey': currentJob.sitekey, 
+                    'size': 'invisible', 
+                    'theme': 'dark',
+                    'callback': 'submitToken',
+                    'error-callback': 'errorHandler'
+                });
+            };
+        };
+        ipcRenderer.on('captcha-request', async (e, data) => {
+            console.log('captcha request received', data);
+            // enqueue the request
+            await captchaQueue.enqueue({...data});
+        });
+    </script>
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+</body>
+</html>

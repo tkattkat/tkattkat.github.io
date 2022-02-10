@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Home</title>
+
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/fa.js"></script>
+  <script>window.$ = window.jQuery = require('jquery');</script>
+</head>
+
+<body>
+  <div class="page" style="border-radius: 6px;">
+    <div class="header" style="-webkit-app-region: drag">
+      <a id="openMenu" style="position: absolute; top: 10px; left: 5px; -webkit-app-region: no-drag"><i
+          class="fas fa-2x fa-bars" style="font-size: 23px;"></i></a>
+      <div>
+        <img src="assets/electra_logo.png" style="position: absolute; top: 5px; left: 23px;" alt="" class="logo">
+      </div>
+      <div style="text-align: center;">
+        <div class="tabs" style="-webkit-app-region: no-drag;">
+          <a href="#" id="homeTab" class="tab tab-selected" onclick="openTab(event, 'home-grid')"><i
+              class="fas fa-home"></i></a>
+          <a href="#" id="settingsTab" class="tab" onclick="openTab(event, 'settings-grid')"><i
+              class="fas fa-cog"></i></a>
+        </div>
+      </div>
+      <div class="window-buttons">
+        <a id="minimize" style="-webkit-app-region: no-drag;"><i class="fas fa-fw fa-compress-alt"></i></a>
+        <a id="close" style="-webkit-app-region: no-drag;"><i class="fas fa-fw fa-times"></i></a>
+      </div>
+    </div>
+    <div class="tabcontent" id="settings-grid">
+      <!-- Create Task (Sidebar) -->
+      <div class="flex-col">
+        <div class="h2">Profiles</div>
+        <div class="box flex-col f-col" style="flex: 1;">
+          <select class="f-select" id="loadProfileSelect" onchange="window.loadProfile()">
+            <option selected value="" disabled>Select a Wallet</option>
+            <option value="allProfiles">All Profiles</option>
+          </select>
+
+          <div class="h3">Mint Info</div>
+          <div class="f-grid-2">
+            <div class="f-group">
+              <div class="f-label">Provider URL</div>
+              <input id="firstName" type="text" class="f-input"
+                placeholder="https://eth-mainnet.alchemyapi.io/v2/SK9iImsjKKSkiS9JkSIbD">
+            </div>
+
+            <div class="f-group">
+              <div class="f-label"></div>
+              <input id="lastName" style="display: none;" type="text" class="f-input" placeholder="Pollack">
+            </div>
+          </div>
+          <div class="f-grid-2">
+            <div class="f-group">
+              <div class="f-label">PrivateKey</div>
+              <input id="email" type="text" class="f-input" placeholder="edpollack@gmail.com">
+            </div>
+
+            <div class="f-group">
+              <div class="f-label"></div>
+              <input id="phone" style="display: none;" type="text" class="f-input" placeholder="9315401120">
+            </div>
+          </div>
+          <div class="f-grid-2">
+            <div class="f-group">
+              <div class="f-label">Etherscan api key</div>
+              <input id="addr1" type="text" class="f-input" placeholder="9EWFJAYVC1G96NM6BJF9EGP723SYJC2ZW">
+            </div>
+            <div class="f-group">
+              <div class="f-label"></div>
+              <input id="addr2" style="display: none;" type="text" class="f-input" placeholder="Street Address 2">
+            </div>
+          </div>
+          <div class="f-grid-2">
+            <div class="f-group">
+              <div class="f-label">Etherscan Network</div>
+              <select id="countries" class="f-select">
+                <option value="https://api.etherscan.io" selected="selected">Mainnet</option>
+                <option value="https://api-ropsten.etherscan.io">Ropsten</option>
+              </select>
+            </div>
+            <div class="f-group">
+              <div class="f-label"></div>
+              <select id="states" style="display: none;" class="f-select">
+                <!-- <option value="Alabama">Alabama</option>
+                <option value="Alaska">Alaska</option>
+                <option value="Arizona">Arizona</option>
+                <option value="Arkansas">Arkansas</option>
+                <option value="California">California</option>
+                <option value="Colorado">Colorado</option>
+                <option value="Connecticut">Connecticut</option>
+                <option value="Delaware">Delaware</option>
+                <option value="District Of Columbia">District Of Columbia</option>
+                <option value="Florida">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option> -->
+              </select>
+            </div>
+          </div>
+          <div class="f-grid-2">
+            <div class="f-group">
+              <div class="f-label"></div>
+              <input id="city" style="display: none;" type="text" class="f-input" placeholder="Oakland">
+            </div>
+
+            <div class="f-group">
+              <div class="f-label"></div>
+              <input id="zip" style="display: none;" type="text" class="f-input" placeholder="94612">
+            </div>
+          </div>
+
+          <div class="h3"></div>
+          <div class="f-grid-3">
+            <div class="f-group">
+              <div class="f-label"></div>
+              <input id="ccNumber" style="display: none;" type="text" class="f-input" placeholder="4485706847258017">
+            </div>
+
+            <div class="f-group">
+              <div class="f-label"></div>
+              <input id="expiry" style="display: none;" type="text" class="f-input" placeholder="08/2023">
+            </div>
+
+            <div class="f-group">
+              <div class="f-label"></div>
+              <input id="cvv" style="display: none;" type="text" class="f-input" placeholder="533">
+            </div>
+          </div>
+
+          <div class="h3"></div>
+
+          <div class="f-grid-1">
+            <div class="f-group">
+              <div class="f-label">Wallet Name</div>
+              <input id="profileName" type="text" class="f-input" placeholder="MyProfile">
+            </div>
+          </div>
+
+          <div style="flex: 1;"></div>
+
+          <div class="f-grid-2">
+            <a id="saveProfile" href="#" class="btn btn-primary">Save Profile</a>
+            <a id="deleteProfile" href="#" class="btn btn-danger">Delete Profile</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex-col">
+
+        <!-- General Settings -->
+        <div class="h2">General Settings</div>
+        <div class="box f-col">
+          <div class="f-grid-2-3">
+            <div class="f-group">
+              <div class="f-label">Discord Webhook</div>
+              <input id="webhook" type="text" class="f-input" placeholder="https://discordapp.com/xyz">
+            </div>
+
+            <div class="f-group">
+              <div class="f-label">Splash Sound</div>
+              <label class="cb-container" style="margin: 0;">Toggle
+                <input type="checkbox" id="splashSound">
+                <span class="cb-checkmark"></span>
+              </label>
+            </div>
+          </div>
+          <div class="f-grid-2">
+            <div class="f-group">
+              <div class="f-label">Monitor Delay (ms)</div>
+              <input id="monitorDelay" type="number" class="f-input" placeholder="5000">
+            </div>
+
+            <div class="f-group">
+              <div class="f-label">Timeout (ms)</div>
+              <input id="timeout" type="number" class="f-input" placeholder="15000">
+            </div>
+          </div>
+          <div class="f-grid-1">
+            <div class="f-group">
+              <div class="f-label">Password</div>
+              <input id="password" type="text" class="f-input" placeholder="poseidon123" value="poseidon123">
+            </div>
+          </div>
+
+
+          <div class="f-grid-2" style="margin-top: 1rem;">
+            <a href="#" id="saveSettings" class="btn btn-primary">Save Settings</a>
+            <a href="#" id="resetSettings" class="btn">Reset Settings</a>
+          </div>
+        </div>
+
+        <!-- Proxies -->
+        <div class="h2">Proxies</div>
+        <div class="box flex-col f-col" style="flex: 1;">
+          <div class="f-group" style="flex: 1;">
+            <div class="f-label">Proxy List</div>
+            <textarea class="f-input" rows="10" style="flex: 1;" id="allProxies"></textarea>
+          </div>
+          <div class="f-grid-2">
+            <a id="saveProxies" href="#" class="btn btn-primary">Save Proxies</a>
+            <a id="clearProxies" href="#" class="btn btn-danger">Clear Proxies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tabcontent" id="home-grid">
+
+      <!-- Create Task (Sidebar) -->
+      <div class="flex-col">
+        <div class="h2">Create Task</div>
+        <div class="box flex-col f-col" style="flex: 1;">
+
+          <!-- Site -->
+          <div class="f-group">
+            <div class="f-label">Site</div>
+            <select class="f-select" id="taskSite">
+              <option value="https://www.adidas.com">Mint</option>
+              <option value="https://www.adidas.com">Mint (param)</option>
+              <option value="https://www.adidas.com">Opensea</option>
+
+            </select>
+          </div>
+          <div class="f-group" id="collectionGroup">
+            <div class="f-label">Input</div>
+            <input id="collectionInput" type="text" class="f-input"
+              placeholder="0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d">
+          </div>
+
+          <!-- URL -->
+          <div class="f-group" id="urlGroup" style="display: none;">
+            <div class="f-label">Monitor Input</div>
+            <input id="waitingURL" type="text" class="f-input" placeholder="0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d">
+          </div>
+
+          <!-- HARVESTER URL -->
+          <div class="f-group" id="harvesterURLGroup" style="display: none;">
+            <div class="f-label">URL</div>
+            <select class="f-select" id="harvesterWaitingURL">
+              <option value="https://www.adidas.com/" selected>Adidas</option>
+              <option value="https://www.adidas.co.uk/">Adidas UK</option>
+              <option value="https://www.adidas.fr/">Adidas FR</option>
+              <option value="https://www.adidas.com.au/">Adidas AU</option>
+              <option value="https://www.adidas.de/">Adidas DE</option>
+              <option value="https://www.adidas.es/">Adidas ES</option>
+              <option value="https://www.adidas.it/">Adidas IT</option>
+              <option value="https://www.adidas.co.nz/">Adidas NZ</option>
+              <option value="https://www.adidas.mx/">Adidas MX</option>
+              <option value="https://www.adidas.ru/">Adidas RU</option>
+              <option value="https://www.adidas.se/">Adidas SE</option>
+              <option value="https://www.adidas.com.sg/">Adidas SG</option>
+              <option value="https://www.adidas.at/">Adidas AT</option>
+              <option value="https://www.adidas.be/">Adidas BE</option>
+              <option value="https://www.adidas.com.br/">Adidas BR</option>
+              <option value="https://www.adidas.cz/">Adidas CZ</option>
+              <option value="https://www.adidas.dk/">Adidas DK</option>
+              <option value="https://www.adidas.fi/">Adidas FI</option>
+              <option value="https://www.adidas.com.ph/">Adidas PH</option>
+              <option value="https://www.adidas.pl/">Adidas PL</option>
+              <option value="https://www.adidas.com.my/">Adidas MY</option>
+              <option value="https://www.adidas.sk/">Adidas SK</option>
+              <option value="https://www.adidas.ch/">Adidas CH</option>
+              <option value="https://www.adidas.ca/">Adidas CA</option>
+              <option value="https://www.adidas.nl/">Adidas NL</option>
+              <option value="https://www.bestbuy.com/">Best Buy</option>
+              <option value="https://www.champssports.com/">Champssports</option>
+              <option value="https://www.converse.com/">Converse</option>
+              <option value="https://www.dickssportinggoods.com/">Dicks Sporting Goods</option>
+              <option value="https://www.eastbay.com/">Eastbay</option>
+              <option value="https://www.finishline.com/">Finishline</option>
+              <option value="https://www.footaction.com/">Footaction</option>
+              <option value="https://www.footlocker.com/">Footlocker US</option>
+              <option value="https://www.footlocker.ca/">Footlocker CA</option>
+              <option value="https://www.footlocker.co.uk/">Footlocker UK</option>
+              <option value="https://www.footlocker.no/">Footlocker NO</option>
+              <option value="https://www.footlocker.se/">Footlocker SE</option>
+              <option value="https://www.footlocker.dk/">Footlocker DK</option>
+              <option value="https://www.footlocker.sg/">Footlocker SG</option>
+              <option value="https://www.footlocker.my/">Footlocker MY</option>
+              <option value="https://www.footlocker.hk/">Footlocker HK</option>
+              <option value="https://www.footlocker.fr/">Footlocker FR</option>
+              <option value="https://www.footlocker.de/">Footlocker DE</option>
+              <option value="https://www.footlocker.lu/">Footlocker LU</option>
+              <option value="https://www.footlocker.be/">Footlocker BE</option>
+              <option value="https://www.footlocker.nl/">Footlocker NL</option>
+              <option value="https://www.footlocker.it/">Footlocker IT</option>
+              <option value="https://www.footlocker.es/">Footlocker ES</option>
+              <option value="https://www.footpatrol.com/">Footpatrol</option>
+              <option value="https://www.kidsfootlocker.com/">Kids Footlocker</option>
+              <option value="https://www.jdsports.com/">JD Sports US</option>
+              <option value="https://www.jdsports.co.uk/">JD Sports</option>
+              <option value="https://www.size.co.uk/">Size</option>
+              <option value="https://www.thehipstore.co.uk/">The Hip Store</option>
+              <option value="https://www.yeezysupply.com/">Yeezysupply</option>
+            </select>
+          </div>
+
+          <!-- Profile -->
+          <div class="f-group" id="profileGroup">
+            <div class="f-label">Wallet</div>
+            <select class="f-select" id="selectProfile">
+
+            </select>
+          </div>
+
+
+
+          <div class="f-group" id="monitorGroup" style="display: none;">
+            <div class="f-label">Monitor Function </div>
+            <input id="monitorInput" type="text" class="f-input" placeholder="saleActive">
+          </div>
+
+          <div class="f-group" id="mintFunctionGroup" >
+            <div class="f-label">Mint function</div>
+            <input id="mintFunction" type="text" class="f-input" placeholder="mint">
+          </div>
+
+          <div class="f-group" id="locationGroup" style="display: none;">
+            <div class="f-label">Scheduled start</div>
+            <input id="locationPref" type="text" class="f-input" placeholder="1642039972">
+          </div>
+
+
+          <div class="f-group" id="keywordsGroup">
+            <div class="f-label">Gas limit </div>
+            <input id="keywordsInput" type="text" class="f-input" placeholder="200000">
+          </div>
+          <div class="f-group" id="colorGroup">
+            <div class="f-label">Max Fee</div>
+            <input id="colorInput" type="text" class="f-input" placeholder="100">
+          </div>
+
+          <div class="f-group" id="priorityGroup">
+            <div class="f-label">Priority Fee</div>
+            <input id="priorityInput" type="text" class="f-input" placeholder="100">
+          </div>
+
+          <div class="f-group" id="sizeGroup">
+            <div class="f-label">Value</div>
+            <input id="sizeInput" type="text" class="f-input" placeholder="mint cost">
+          </div>
+
+          <div class="f-group" id="param1Group" >
+            <div class="f-label">param 1</div>
+            <input id="param1" type="text" class="f-input" placeholder="mint param">
+          </div>
+
+          <div class="f-group" id="param2Group">
+            <div class="f-label">Custom ABI</div>
+            <input id="param2" type="text" class="f-input" placeholder="Contract ABI">
+          </div>
+
+          <div class="f-group" id="param3Group" style="display: none;">
+            <div class="f-label">param 3</div>
+            <input id="param3" type="text" class="f-input" placeholder="mint param">
+          </div>
+
+
+          <!-- Supreme Location Group -->
+
+          <div class="f-group">
+            <div class="f-label">Number of Tasks</div>
+            <input id="numTasks" type="number" class="f-input" placeholder="15">
+          </div>
+
+          <div class="f-group" id="delayGroup">
+            <div class="f-label">Monitor delay</div>
+            <input id="delay" type="number" class="f-input" placeholder="4500">
+          </div>
+
+          <!-- Pool & Autofill -->
+          <div class="f-group">
+            <div id="proxyPoolGroup" style="display: none;">
+              <label class="cb-container">Monitor Function
+                <input type="checkbox" id="useProxies" checked>
+                <span class="cb-checkmark"></span>
+              </label>
+            </div>
+
+            <div id="autofillGroup" style="display: none;">
+              <label class="cb-container">Preset gas
+                <input type="checkbox" id="useAutofill" checked>
+                <span class="cb-checkmark"></span>
+              </label>
+            </div>
+
+            <div id="autosolveGroup" style="display: none;">
+              <label class="cb-container">Scheduled start
+                <input type="checkbox" id="useAutoSolve">
+                <span class="cb-checkmark"></span>
+              </label>
+            </div>
+
+            <div id="bypassGroup" style="display: none;">
+              <label class="cb-container">Monitor Mempool
+                <input type="checkbox" id="useCaptchaBypass">
+                <span class="cb-checkmark"></span>
+              </label>
+            </div>
+          </div>
+
+          <div style="flex: 1;"></div>
+
+          <!-- Buttons -->
+          <div class="btn-stack">
+            <a id="addTasks" href="#" class="btn btn-primary">Add Tasks</a>
+            <a id="resetTasks" href="#" class="btn">Clear</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex-col" style="position: relative;">
+        <div class="h2">Tasks</div>
+        <div class="floating-buttons">
+          <div class="fb-buttongroup">
+            <div class="fb-button">
+              <a id="startAllTasks" href="#"><i class="fas fa-fw fa-play h-green"></i></a>
+            </div>
+            <div class="fb-button">
+              <a id="stopAllTasks" href="#"><i class="fas fa-fw fa-stop h-red"></i></a>
+            </div>
+            <div class="fb-button">
+              <a id="deleteAllTasks" href="#"><i class="fas fa-fw fa-trash-alt h-red"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="e-tablewrap">
+          <table class="ph-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>module</th>
+                <th>Input</th>
+                <th>Wallet</th>
+                <th></th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="taskBody">
+
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function openTab(evt, tabName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tab");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" tab-selected", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(tabName).style.display = "";
+      evt.currentTarget.className += " tab-selected";
+    }
+    document.querySelector('#homeTab').click();
+  </script>
+  <script src="../renderer.js"></script>
+</body>
+
+</html>

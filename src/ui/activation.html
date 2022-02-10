@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Home</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/fa.js"></script>
+</head>
+
+<body>
+    <div class="page" style="border-radius: 6px;">
+        <div class="header" style="background: transparent; padding-top: 1rem; -webkit-app-region: drag">
+            <div></div>
+            <div></div>
+            <div class="window-buttons" style="-webkit-app-region: no-drag;">
+                <a id="minimize"><i class="fas fa-fw fa-compress-alt"></i></a>
+                <a id="close"><i class="fas fa-fw fa-times"></i></a>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: center; flex: 1; overflow-y: hidden;">
+            <div class="box f-col flex-col" style="width: 20rem; margin-bottom: 2rem;">
+                <div style="text-align: center;">
+                    <img style="max-height: 5rem; margin-top: 1rem;" src="assets/electra_logo.png">
+                </div>
+                <div class="h3" style="text-align: center; margin-top: 0;">Activate Poseidon</div>
+                <div class="f-group">
+                    <input type="text" class="f-input" id="license" placeholder="License Key">
+                </div>
+                <a id="activate" href="#" class="btn btn-primary">Activate</a>
+                <div id="activateResponse" class="h5" style="text-align: center; margin-top: 10px;"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const { ipcRenderer, remote } = require('electron');
+        document.querySelector('#activate').addEventListener('click', () => {
+            const key = document.querySelector("#license").value;
+            if (/.{5}-.{5}-.{5}-.{5}/.test(key)) {
+                ipcRenderer.send('activateKey', key);
+                ipcRenderer.on('activateResponse', (e, data) => {
+                    document.querySelector('#activateResponse').innerText = data.msg;
+                    if (data.success) {
+                        document.querySelector('#activateResponse').style.color = 'green';
+                    } else {
+                        document.querySelector('#activateResponse').style.color = 'red';
+                    }
+                })
+            }
+        })
+        document.querySelector('#minimize').addEventListener('click', () => {
+            remote.getCurrentWindow().minimize();
+        });
+        document.querySelector('#close').addEventListener('click', () => {
+            remote.app.quit();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="8px" viewBox="0 0 12 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Group 9</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="Dropdown" transform="translate(-228.000000, -34.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Alternative-Input-Field-With-Text">
+                <g>
+                    <g id="Field" transform="translate(0.000000, 20.000000)">
+                        <g id="Group-9" transform="translate(228.000000, 14.000000)">
+                            <path d="M1.83892617,0.31784396 L6.00536913,4.48428691 L10.1718121,0.31784396 C10.590604,-0.100947987 11.2671141,-0.100947987 11.685906,0.31784396 C12.104698,0.736635906 12.104698,1.41314597 11.685906,1.83193792 L6.75704698,6.76079698 C6.33825503,7.17958893 5.66174497,7.17958893 5.24295302,6.76079698 L0.31409396,1.83193792 C-0.104697987,1.41314597 -0.104697987,0.736635906 0.31409396,0.31784396 C0.732885906,-0.0902097315 1.42013423,-0.100947987 1.83892617,0.31784396 Z" id="Path"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

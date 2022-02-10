@@ -1,0 +1,65 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Keyvault Popup</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/fa.js"></script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+</head>
+
+<body>
+    <div class="page" style="border-radius: 6px;">
+        <div class="header" style="background: transparent; padding-top: 1rem; -webkit-app-region: drag">
+            <div></div>
+            <div></div>
+            <div class="window-buttons" style="-webkit-app-region: no-drag;">
+                <a id="minimize"><i class="fas fa-fw fa-compress-alt"></i></a>
+                <a id="close"><i class="fas fa-fw fa-times"></i></a>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: center; flex: 1; overflow-y: hidden;">
+            <div class="box f-col flex-col" style="width: 20rem; margin-bottom: 2rem;">
+                <div class="h3" style="text-align: center; margin-top: 0;">Key Vault</div>
+                <div class="f-group">
+                    <div class="f-label">Password</div>
+               <input id="vaultPassword" type="text" class="f-input" placeholder="Password">
+               <div class="f-grid-2">
+                    <a id="unlockVault" href="#" class="btn btn-primary">Unlock</a>
+                    <a id="resetPassword" href="#" class="btn btn-danger">Reset password</a>
+                </div>
+                <div id="activateResponse" class="h5" style="text-align: center; margin-top: 10px;"></div>
+        </div>
+    </div>
+    <script>
+        const { ipcRenderer, remote } = require('electron');
+        document.querySelector('#unlockVault').addEventListener('click', () => {
+            const password = Buffer.from(document.querySelector('#vaultPassword').value, "utf-8"); 
+            if (password.length > 1){ ipcRenderer.send('unlock', password )} else {
+                document.querySelector('#activateResponse').style.color = 'red';
+                document.querySelector('#activateResponse').innerText =('Please enter password')
+            }
+  })
+  ipcRenderer.on('vault unlock successful', (e) => {
+    document.querySelector('#activateResponse').style.color = 'green';
+    document.querySelector('#activateResponse').innerText =('vault unlock successful')
+            remote.getCurrentWindow().destroy();
+        })
+    ipcRenderer.on('vault unlock error', (e) => {
+    document.querySelector('#activateResponse').style.color = 'red';
+    document.querySelector('#activateResponse').innerText =('Incorrect password')
+        })
+        
+        document.querySelector('#minimize').addEventListener('click', () => {
+            remote.getCurrentWindow().minimize();
+        });
+        document.querySelector('#close').addEventListener('click', () => {
+            remote.getCurrentWindow().destroy();
+        });
+    </script>
+</body>
+</html>

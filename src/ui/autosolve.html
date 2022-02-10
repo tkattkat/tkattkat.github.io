@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AutoSolve Settings</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/fa.js"></script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+</head>
+
+<body>
+    <div class="page" style="border-radius: 6px;">
+        <div class="header" style="background: transparent; padding-top: 1rem; -webkit-app-region: drag">
+            <div></div>
+            <div></div>
+            <div class="window-buttons" style="-webkit-app-region: no-drag;">
+                <a id="minimize"><i class="fas fa-fw fa-compress-alt"></i></a>
+                <a id="close"><i class="fas fa-fw fa-times"></i></a>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: center; flex: 1; overflow-y: hidden;">
+            <div class="box f-col flex-col" style="width: 20rem; margin-bottom: 2rem;">
+                <div class="h3" style="text-align: center; margin-top: 0;">AYCD AutoSolve Settings</div>
+                <div class="f-group">
+                    <div class="f-label">Access Token</div>
+                    <input id="access_token" type="text" class="f-input" placeholder="Access Token">
+                </div>
+                <div class="f-group">
+                    <div class="f-label">API Key</div>
+                    <input id="api_key" type="text" class="f-input" placeholder="API Key">
+                </div>
+                <a id="save" href="#" class="btn btn-primary">Save</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const { ipcRenderer, remote } = require('electron');
+        // get the settings from main
+        ipcRenderer.send('getAutoSolveSettings');
+        ipcRenderer.on('receivedAutoSolveSettings', (e, { userAPIKey, userAccessToken}) => {
+            document.querySelector('#access_token').value = userAccessToken;
+            document.querySelector('#api_key').value = userAPIKey;
+        })
+        ipcRenderer.on('savedAutoSolveSettings', (e) => {
+            remote.getCurrentWindow().destroy();
+        })
+        document.querySelector('#save').addEventListener('click', () => {
+            const userAccessToken = document.querySelector('#access_token').value;
+            const userAPIKey = document.querySelector('#api_key').value;
+            ipcRenderer.send('saveAutoSolveSettings', { userAccessToken, userAPIKey });
+        });
+        document.querySelector('#minimize').addEventListener('click', () => {
+            remote.getCurrentWindow().minimize();
+        });
+        document.querySelector('#close').addEventListener('click', () => {
+            remote.getCurrentWindow().destroy();
+        });
+    </script>
+</body>
+</html>

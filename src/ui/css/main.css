@@ -1,0 +1,480 @@
+/*** uncss> filename: css/main.css ***/
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+.e-tablewrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.e-tablewrap::-webkit-scrollbar {
+  display: none;
+}
+
+.ph-table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  background: #0e0d35;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  overflow: auto;
+}
+
+.ph-table thead th {
+  position: sticky;
+  top: 0;
+}
+
+.ph-table thead tr {
+  color: #fff;
+}
+
+.ph-table th {
+  background: #130f40;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 1rem 1rem 1rem 0;
+  position: sticky;
+  top: 0;
+  font-size: 13px;
+}
+
+.ph-table th:first-child {
+  border-radius: 0.5rem 0 0 0;
+  padding-left: 2rem;
+}
+
+.ph-table th:last-child {
+  border-radius: 0 0.5rem 0 0;
+  padding-right: 2rem;
+}
+
+.ph-table tbody {
+  color: #fff;
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.ph-table td {
+  padding: 0;
+  font-size: 13px;
+}
+
+.ph-table td > * {
+  background: #130f40;
+  padding: 1rem 1rem 1rem 0;
+  margin: 0 0 0.75rem 0;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.ph-table tr:first-child > td > * {
+  margin-top: 1rem;
+}
+
+.ph-table tr:last-child > td > * {
+  margin-bottom: 1rem;
+}
+
+.ph-table td:first-child > * {
+  margin-left: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.ph-table td:last-child > * {
+  margin-right: 1rem;
+  padding-right: 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.ph-table tr:last-child td:first-child {
+  border-radius: 0 0 0 0.5rem;
+}
+
+.ph-table tr:last-child td:last-child {
+  border-radius: 0 0 0.5rem 0;
+}
+
+.ph-table .ph-bulb {
+  margin: 0 0 0 1.25rem;
+}
+
+.ph-table a {
+  text-decoration: underline;
+}
+
+.table-buttons {
+  justify-content: flex-end;
+}
+
+.table-buttons a {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  transition: all 0.2s ease-in-out;
+}
+
+.table-buttons a:hover {
+  transform: scale(1.05);
+}
+
+.h-red:hover {
+  color: #F64962;
+}
+
+.h-blue:hover {
+  color: #00A4FF;
+}
+
+.h-green:hover {
+  color: #00E72C;
+}
+
+.header {
+  background: #0e0d35;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.logo {
+  max-width: 2rem;
+  margin-left: 1rem;
+}
+
+.tabs {
+  background: #130f40;
+  border-radius: 0.25rem;
+  display: inline-flex;
+  margin: 0.5rem 0;
+}
+
+.tab {
+  border-radius: 0.25rem;
+  color: white;
+  text-align: center;
+  padding: 0.125rem 2rem;
+  font-size: 1.375rem;
+}
+
+.tab-selected {
+  background: linear-gradient(to bottom, #887dfe, #887dfe);
+}
+
+.window-buttons {
+  text-align: right;
+  font-size: 1.375rem;
+  margin-right: 1rem;
+}
+
+.window-buttons a {
+  color: white;
+}
+
+#settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1rem;
+  padding: 1rem;
+  flex: 1;
+}
+
+.floating-buttons {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.fb-buttongroup {
+  box-shadow: 0px 4px 16px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  z-index: 100;
+}
+
+.fb-button {
+  text-align: center;
+  padding: 0.5rem 2rem;
+  pointer-events: all;
+  background: linear-gradient(to bottom, #887dfe, #887dfe);
+}
+
+.fb-button:first-child {
+  border: 1px solid #5C727F;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.fb-button:last-child {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.fb-button:not(:first-child) {
+  border-top: 1px solid #5C727F;
+  border-bottom: 1px solid #5C727F;
+  border-right: 1px solid #5C727F;
+}
+
+.fb-button a {
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+}
+
+.fb-button a:hover {
+  transform: scale(1.1);
+}
+
+.cb-container {
+  display: block;
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.cb-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.cb-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.375rem;
+  width: 1.375rem;
+  border-radius: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cb-container input:checked ~ .cb-checkmark {
+  background-color: #887dfe;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.cb-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the cb-ch.cb-checkmark when checked */
+.cb-container input:checked ~ .cb-checkmark:after {
+  display: block;
+}
+
+/* Style the cb-ch.cb-checkmark/indicator */
+.cb-container .cb-checkmark:after {
+  left: 8px;
+  top: 5px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+a {
+  color: white;
+}
+
+.page {
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(to bottom, #0e0d35, #0e0d35);
+  color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#home-grid {
+  display: grid;
+  grid-template-columns: 3fr 10fr;
+  column-gap: 1rem;
+  padding: 1rem;
+  flex: 1;
+}
+
+.h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.f-col > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.f-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.f-label {
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-size: 13px;
+  margin-bottom: 0.25rem;
+}
+
+.f-input,
+.f-select {
+  background: #0e0d35;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  padding: 0.375rem 0.5rem;
+}
+
+
+
+textarea.f-input {
+  resize: none;
+}
+
+.f-select {
+  background: #0e0d35;
+  background-image: url("../assets/arrow_down.svg");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.75em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.f-input:focus,
+.f-select:focus {
+  outline: none;
+}
+.f-grid-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 0.5rem;
+}
+.f-grid-2-3 {
+  display: grid;
+  grid-template-columns: 1fr .3fr;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+}
+.f-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+}
+
+.f-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+}
+
+.box {
+  background: #130f40;
+  border-radius: 0.25rem;
+  padding: 0.65rem;
+}
+
+.btn {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
+  border-radius: 0.25rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.65rem 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: scale(1.025);
+}
+
+.btn-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-stack > *:not(:last-child) {
+  margin-bottom: 0.65rem;
+}
+
+option {
+  background-color: #3C5766;
+}
+
+.btn-primary {
+  background: linear-gradient(to bottom, #887dfe, #887dfe);
+}
+
+.btn-danger {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
+}
+
+.btn-blue {
+  background: linear-gradient(to bottom, #33B6FF, #00A4FF);
+}
+
+.ph-bulb {
+  background: rgba(255, 255, 255, 0.2);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 100rem;
+}
+
+.ph-bulb-large {
+  height: 0.75rem;
+  width: 0.75rem;
+}
+
+.ph-bulb-green {
+  background: #887dfe;
+}
+.ph-bulb-red {
+  background: #ad0000;
+}
+
+/*# sourceMappingURL=main.css.map */

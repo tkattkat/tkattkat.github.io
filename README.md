@@ -1,0 +1,11 @@
+# Development Rewrite Notes
+- use yarn instead of npm
+- tabs instead of spaces
+- mocha > jest
+- app folder: backend
+	- files in folder are necessary for entire app, such as the keyvault
+	- each subfolder is dedicated to different chains, such as veve, sol, eth
+	- GENERAL UTILS.TS IS ONLY FOR GENERAL UTILS THAT APPLY TO ALL CHAINS
+	- Do not use shorthand name, such as AVAX for avalanche, or ETH for ethereum. Be verbose
+	- Can abstract and use general utils (such as keyvault) into specific
+- ui folder: frontend, electron, etc
